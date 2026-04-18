@@ -4,34 +4,57 @@
     box-sizing: border-box;
 }
 
+/* ZÁKLAD */
+html, body {
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 body {
-    font-family: 'Inter', sans-serif;
-    background: radial-gradient(circle at top, #111, #050505);
+    font-family: Arial, sans-serif;
     color: #fff;
+}
+
+/* BACKGROUNDY */
+.home {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url("bg-home.jpg") center/cover fixed;
+}
+
+.cennik {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url("bg-cennik.jpg") center/cover fixed;
+}
+
+.lokace {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url("bg-lokace.jpg") center/cover fixed;
+}
+
+.zamestnanci {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url("bg-staff.jpg") center/cover fixed;
 }
 
 /* NAVBAR */
 .navbar {
     position: fixed;
+    top: 0;
     width: 100%;
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 15px 30px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
     z-index: 1000;
-    border-bottom: 1px solid #00ffcc33;
 }
 
 .logo {
-    font-family: 'Orbitron', sans-serif;
-    color: #00ffcc;
+    height: 40px;
 }
 
 .navbar ul {
     display: flex;
-    list-style: none;
     gap: 25px;
+    list-style: none;
 }
 
 .navbar a {
@@ -41,53 +64,47 @@ body {
 }
 
 .navbar a:hover {
-    color: #00ffcc;
+    color: #7aa2ff;
 }
 
-/* HERO */
-.hero {
-    height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
-    url("https://images.unsplash.com/photo-1503376780353-7e6692767b70");
-    background-size: cover;
-    background-position: center;
+/* HLAVNÍ STRÁNKA */
+.center {
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center;     
     text-align: center;
+    padding: 20px;
 }
 
-.hero h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3.5rem;
-    color: #00ffcc;
-    text-shadow: 0 0 20px #00ffcc88;
+.center h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
 }
 
-.hero p {
-    margin-top: 10px;
-    color: #ccc;
-}
+/* OBSAH STRÁNEK */
+.content {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;     
+    text-align: center;
 
-.announcement {
-    margin-top: 25px;
-    padding: 12px;
-    background: #00ffcc22;
-    border: 1px solid #00ffcc;
-    border-radius: 8px;
-    box-shadow: 0 0 10px #00ffcc55;
-}
-
-/* SECTIONS */
-.section {
     padding: 120px 20px;
-    text-align: center;
 }
 
-.section h2 {
-    margin-bottom: 40px;
-    font-size: 2.2rem;
-    color: #00ffcc;
+/* OMEZENÍ ŠÍŘKY */
+.content > * {
+    max-width: 900px;
+    width: 100%;
+}
+
+/* NADPISY */
+.content h2 {
+    margin-bottom: 30px;
+    font-size: 2.5rem;
 }
 
 /* CARDS */
@@ -96,43 +113,35 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     gap: 25px;
+    margin-top: 30px;
 }
 
 .card {
-    background: linear-gradient(145deg, #111, #1a1a1a);
-    padding: 25px;
-    width: 260px;
-    border-radius: 15px;
+    background: rgba(20,20,30,0.85);
+    padding: 20px;
+    border-radius: 12px;
     transition: 0.3s;
-    border: 1px solid #00ffcc22;
+    min-width: 220px;
 }
 
 .card:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 0 25px #00ffcc;
-}
-
-.card h3 {
-    color: #00ffcc;
-    margin-bottom: 10px;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #7aa2ff;
 }
 
 /* IMAGE */
 .map {
-    width: 80%;
+    width: 100%;
     max-width: 800px;
-    border-radius: 15px;
-    margin-top: 25px;
-    box-shadow: 0 0 25px #00ffcc55;
+    margin-top: 20px;
+    border-radius: 12px;
 }
 
-/* FOOTER */
+/* FOOTER (pokud přidáš) */
 footer {
-    padding: 25px;
     text-align: center;
-    background: #050505;
-    border-top: 1px solid #00ffcc33;
-    color: #777;
+    padding: 20px;
+    background: rgba(0,0,0,0.7);
 }
 
 /* RESPONSIVE */
@@ -142,7 +151,26 @@ footer {
         align-items: center;
     }
 
-    .hero h1 {
-        font-size: 2.2rem;
+    .center h1 {
+        font-size: 2rem;
     }
+}
+
+.zamestnanci .cards {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.rank-title {
+    width: 100%;
+    margin-top: 80px;   /* prostor NAD sekcí */
+    margin-bottom: 35px; /* 👈 TO JE KLÍČ – mezera pod názvem role */
+    font-size: 1.7rem;
+    color: #7aa2ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(122,162,255,0.4);
 }
