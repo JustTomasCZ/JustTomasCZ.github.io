@@ -4,36 +4,63 @@
     box-sizing: border-box;
 }
 
-/* ZÁKLAD */
+/* =========================
+   ZÁKLAD
+========================= */
 html, body {
-    height: auto;
+    height: 100%;
+    margin: 0;
     overflow-x: hidden;
-    overflow-y: auto;
-}
-
-body {
     font-family: Arial, sans-serif;
     color: #fff;
 }
 
-/* BACKGROUNDY */
+/* posun kvůli navbaru */
+body {
+    padding-top: 90px;
+}
+
+/* =========================
+   BACKGROUNDY
+========================= */
+.home,
+.cennik,
+.lokace {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
 .home {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url("bg-home.jpg") center/cover fixed;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+    url("bg-home.jpg") center/cover fixed;
 }
 
 .cennik {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url("bg-cennik.jpg") center/cover fixed;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+    url("bg-cennik.jpg") center/cover fixed;
 }
 
 .lokace {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url("bg-lokace.jpg") center/cover fixed;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+    url("bg-lokace.jpg") center/cover fixed;
 }
 
+/* =========================
+   ZAMĚSTNANCI (JEDINÁ SCROLL STRÁNKA)
+========================= */
 .zamestnanci {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url("bg-staff.jpg") center/cover fixed;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+    url("bg-staff.jpg") center/cover fixed;
+
+    min-height: 100vh;
+    overflow-y: auto;
 }
 
-/* NAVBAR */
+/* =========================
+   NAVBAR
+========================= */
 .navbar {
     position: fixed;
     top: 0;
@@ -67,53 +94,30 @@ body {
     color: #7aa2ff;
 }
 
-/* HLAVNÍ STRÁNKA */
-.center {
-    min-height: 100dvh;;
+/* =========================
+   CENTROVÁNÍ OBSAHU
+========================= */
+.center,
+.content {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;     
+    justify-content: center;   /* vertikální střed */
+    align-items: center;       /* horizontální střed */
     text-align: center;
     padding: 20px;
 }
 
-.center h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
-
-/* OBSAH STRÁNEK */
-.content {
-    min-height: 100dvh;;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;     
-    text-align: center;
-
-    padding: 120px 20px;
-}
-
-/* OMEZENÍ ŠÍŘKY */
-.content > * {
-    max-width: 900px;
-    width: 100%;
-}
-
-/* NADPISY */
-.content h2 {
-    margin-bottom: 30px;
-    font-size: 2.5rem;
-}
-
-/* CARDS */
+/* =========================
+   CARDS
+========================= */
 .cards {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 25px;
     margin-top: 30px;
+    width: 100%;
 }
 
 .card {
@@ -129,45 +133,13 @@ body {
     box-shadow: 0 0 20px #7aa2ff;
 }
 
-/* IMAGE */
-.map {
-    width: 100%;
-    max-width: 800px;
-    margin-top: 20px;
-    border-radius: 12px;
-}
-
-/* FOOTER (pokud přidáš) */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: rgba(0,0,0,0.7);
-}
-
-/* RESPONSIVE */
-@media(max-width: 768px) {
-    .cards {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .center h1 {
-        font-size: 2rem;
-    }
-}
-
-.zamestnanci .cards {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 25px;
-}
-
+/* =========================
+   ZAMĚSTNANCI NADPISY
+========================= */
 .rank-title {
     width: 100%;
-    margin-top: 80px;   /* prostor NAD sekcí */
-    margin-bottom: 35px; /* 👈 TO JE KLÍČ – mezera pod názvem role */
+    margin-top: 60px;
+    margin-bottom: 20px;
     font-size: 1.7rem;
     color: #7aa2ff;
     text-transform: uppercase;
@@ -175,23 +147,23 @@ footer {
     text-shadow: 0 0 10px rgba(122,162,255,0.4);
 }
 
-html, body {
-    height: auto;
-    overflow-x: hidden;
-    overflow-y: auto;
+/* =========================
+   MAPA
+========================= */
+.map {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+    border-radius: 12px;
 }
 
-html, body {
-    height: 100%;
-    margin: 0;
-    overflow: hidden; /* základní lock */
-}
-
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 768px) {
 
     .navbar {
         flex-direction: column;
-        align-items: center;
         gap: 10px;
         padding: 10px 15px;
     }
@@ -201,38 +173,79 @@ html, body {
     }
 
     .navbar ul {
-        flex-wrap: wrap;      /* 👈 dovolí zalomení */
+        flex-wrap: wrap;
         justify-content: center;
         gap: 12px;
-        padding: 0;
-    }
-
-    .navbar li {
-        list-style: none;
     }
 
     .navbar a {
         font-size: 14px;
-        padding: 6px 10px;
+    }
+
+    .cards {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
-body {
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 25px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+.logo {
+    height: 45px;
+}
+
+.center {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 120px 20px 60px;
+    gap: 50px; /* 👈 dělá mezery mezi sekcemi */
 }
 
-/* hlavní scroll oblast */
-.content, .center {
-    flex: 1;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch; /* iOS smooth */
+/* VELKÝ NADPIS */
+.main-title {
+    font-size: 3.2rem;
+    color: #fff;
+    text-shadow: 0 0 15px rgba(0,0,0,0.7);
 }
 
-body {
-    overscroll-behavior: none;
+/* O NÁS */
+.about {
+    max-width: 700px;
 }
 
-.content {
-    padding-top: 90px; /* 👈 musí být aspoň výška navbaru */
+.about h2 {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.about p {
+    color: #ddd;
+    line-height: 1.6;
 }
