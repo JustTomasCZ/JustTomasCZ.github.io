@@ -69,7 +69,7 @@ body {
 
 /* HLAVNÍ STRÁNKA */
 .center {
-    min-height: 100vh;
+    min-height: 100dvh;;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -85,7 +85,7 @@ body {
 
 /* OBSAH STRÁNEK */
 .content {
-    min-height: 100vh;
+    min-height: 100dvh;;
     display: flex;
     flex-direction: column;
     justify-content: center; 
@@ -176,13 +176,15 @@ footer {
 }
 
 html, body {
-    width: 100%;
+    height: auto;
     overflow-x: hidden;
+    overflow-y: auto;
 }
 
-/* zabrání “vyjíždění” dolů na mobilu */
-body {
-    overscroll-behavior: none;
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* základní lock */
 }
 
 @media (max-width: 768px) {
@@ -213,4 +215,20 @@ body {
         font-size: 14px;
         padding: 6px 10px;
     }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* hlavní scroll oblast */
+.content, .center {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* iOS smooth */
+}
+
+body {
+    overscroll-behavior: none;
 }
