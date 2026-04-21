@@ -273,3 +273,7 @@ body {
 .brand-name {
     text-shadow: 0 0 10px rgba(122,162,255,0.4);
 }
+
+body.zamestnanci .content {
+    padding-top: 120px; /* bylo 120 → navbar má víc místa */
+}
