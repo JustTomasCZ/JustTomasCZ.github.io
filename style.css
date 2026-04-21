@@ -281,20 +281,3 @@ body {
 body.zamestnanci .content {
     padding-top: 120px; /* bylo 120 → navbar má víc místa */
 }
-
-html, body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    overscroll-behavior: contain;
-    background: black;
-}
-
-/* mobil chování */
-@media (max-width: 768px) {
-    body {
-        height: auto;
-        overflow-y: auto;
-        touch-action: pan-y;
-    }
-}
