@@ -8,14 +8,15 @@
    ZÁKLAD
 ========================= */
 html, body {
-    height: 100%;
     margin: 0;
     overflow-x: hidden;
     font-family: Arial, sans-serif;
     color: #fff;
+    background: black;
+    overscroll-behavior-y: auto; /* umožní refresh */
 }
 
-/* posun kvůli navbaru */
+/* posun pod navbar */
 body {
     padding-top: 90px;
 }
@@ -26,8 +27,7 @@ body {
 .home,
 .cennik,
 .lokace {
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -48,7 +48,7 @@ body {
 }
 
 /* =========================
-   ZAMĚSTNANCI (JEDINÁ SCROLL STRÁNKA)
+   ZAMĚSTNANCI (SCROLL POVOLEN)
 ========================= */
 .zamestnanci {
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
@@ -56,6 +56,32 @@ body {
 
     min-height: 100vh;
     overflow-y: auto;
+}
+
+/* =========================
+   PC vs MOBIL CHOVÁNÍ
+========================= */
+
+/* 💻 PC – bez scrollu */
+@media (min-width: 769px) {
+    .home,
+    .cennik,
+    .lokace {
+        overflow: hidden;
+    }
+}
+
+/* 📱 MOBIL – scroll + refresh */
+@media (max-width: 768px) {
+    .home,
+    .cennik,
+    .lokace {
+        overflow-y: auto;
+    }
+
+    body {
+        touch-action: pan-y; /* zákaz posunu do stran + zoom bug fix */
+    }
 }
 
 /* =========================
@@ -68,14 +94,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
+    padding: 12px 25px;
     background: rgba(0,0,0,0.6);
     backdrop-filter: blur(10px);
     z-index: 1000;
 }
 
 .logo {
-    height: 60px;
+    height: 45px;
 }
 
 .navbar ul {
@@ -95,17 +121,40 @@ body {
 }
 
 /* =========================
-   CENTROVÁNÍ OBSAHU
+   OBSAH
 ========================= */
 .center,
 .content {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;   /* vertikální střed */
-    align-items: center;       /* horizontální střed */
+    justify-content: center;
+    align-items: center;
     text-align: center;
     padding: 20px;
+}
+
+/* homepage layout */
+.center {
+    min-height: 100vh;
+    padding: 120px 20px 60px;
+    gap: 50px;
+}
+
+/* =========================
+   TEXTY
+========================= */
+.main-title {
+    font-size: 3.2rem;
+}
+
+.about {
+    max-width: 700px;
+}
+
+.about p {
+    color: #ddd;
+    line-height: 1.6;
 }
 
 /* =========================
@@ -143,8 +192,11 @@ body {
     font-size: 1.7rem;
     color: #7aa2ff;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(122,162,255,0.4);
+}
+
+/* fix aby první nebyl schovaný */
+.zamestnanci .rank-title:first-of-type {
+    margin-top: 20px;
 }
 
 /* =========================
@@ -188,19 +240,6 @@ body {
     }
 }
 
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 25px;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-}
-
 .brand {
     display: flex;
     align-items: center;
@@ -208,9 +247,9 @@ body {
 }
 
 .brand-name {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    color: #ffffff;
+    color: #fff;
     letter-spacing: 0.5px;
 }
 
@@ -218,50 +257,19 @@ body {
     height: 45px;
 }
 
-.center {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 120px 20px 60px;
-    gap: 50px; /* 👈 dělá mezery mezi sekcemi */
-}
-
-/* VELKÝ NADPIS */
-.main-title {
-    font-size: 3.2rem;
-    color: #fff;
-    text-shadow: 0 0 15px rgba(0,0,0,0.7);
-}
-
-/* O NÁS */
-.about {
-    max-width: 700px;
-}
-
-.about h2 {
-    color: #ffffff;
-    margin-bottom: 10px;
-}
-
-.about p {
-    color: #ddd;
-    line-height: 1.6;
-}
-
-html, body {
-    overscroll-behavior: auto;
-    background: black; /* fallback aby nebyla bílá */
-}
-
-body.zamestnanci .content {
-    padding-top: 120px; /* bylo 120 → navbar má víc místa */
-}
-
 @media (max-width: 768px) {
-    body.home {
-        height: auto !important;
-        overflow-y: auto !important;
+
+    .brand {
+        flex-direction: column;
+        gap: 5px;
     }
+
+    .brand-name {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+}
+
+.brand-name {
+    text-shadow: 0 0 10px rgba(122,162,255,0.4);
 }
