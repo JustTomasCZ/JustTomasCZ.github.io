@@ -251,7 +251,7 @@ body {
 }
 
 html, body {
-    overscroll-behavior: none;
+    overscroll-behavior: auto;
     background: black; /* fallback aby nebyla bílá */
 }
 
