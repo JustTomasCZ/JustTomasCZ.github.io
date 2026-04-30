@@ -279,3 +279,52 @@ body {
         padding-top: 140px; /* víc místa kvůli vyššímu navbaru */
     }
 }
+
+/* =========================
+   LOGIN STRÁNKA
+========================= */
+body.login {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)),
+    url("bg-home.jpg") center/cover fixed;
+}
+
+/* nadpis login */
+.login h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #7aa2ff;
+    text-shadow: 0 0 10px rgba(122,162,255,0.4);
+}
+
+/* form box */
+.login form {
+    background: rgba(20,20,30,0.9);
+    padding: 30px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 280px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+/* input */
+.login input[type="password"] {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    background: #111;
+    color: white;
+    border: 1px solid #333;
+    transition: 0.3s;
+}
+
+.login input[type="password"]:focus {
+    border-color: #7aa2ff;
+    box-shadow: 0 0 10px rgba(122,162,255,0.4);
+}
