@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Mechanici Login</title>
+
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/png" href="logo.png">
 </head>
+
+<body class="login">
 
 <nav class="navbar">
 
@@ -24,28 +27,45 @@
 
 </nav>
 
-<body class="login">
-
 <h2>Přihlášení pro mechaniky</h2>
 
 <form id="loginForm">
+    <input type="email" id="email" placeholder="Email">
     <input type="password" id="password" placeholder="Heslo">
     <button type="submit">Přihlásit</button>
 </form>
 
-<script>
-document.getElementById("loginForm").addEventListener("submit", function(e) {
+<!-- FIREBASE -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAU1bWjf7J3IDbRvfu7C6i8sTI4qasBYvY",
+    authDomain: "ls-underground-garage.firebaseapp.com",
+    projectId: "ls-underground-garage",
+    storageBucket: "ls-underground-garage.firebasestorage.app",
+    messagingSenderId: "488994757180",
+    appId: "1:488994757180:web:cd503b3631b2638a408139"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  document.getElementById("loginForm").addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const pass = document.getElementById("password").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-    if (pass === "LSgarage123") {
-        localStorage.setItem("mechanic", "true");
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
         window.location.href = "mechanici.html";
-    } else {
-        alert("Špatné heslo");
-    }
-});
+      })
+      .catch(() => {
+        alert("Špatné přihlášení");
+      });
+  });
 </script>
 
 </body>
